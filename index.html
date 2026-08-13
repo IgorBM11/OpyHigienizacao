@@ -434,6 +434,11 @@ h1, h2, h3, h4 {
   gap: 16px;
 }
 
+.critical-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 18px;
+}
+
 .critical-card {
   padding-left: 14px;
   border-left: 2px solid var(--accent-color);
@@ -868,31 +873,36 @@ h1, h2, h3, h4 {
     <div class="section-inner">
       <span class="section-kicker">01 — Contexto</span>
       <h2 class="section-title">O ponto de partida do projeto</h2>
-      <p class="section-lede">Hoje o hospital conta com uma operação consolidada, com múltiplos profissionais e sistemas envolvidos, e comunicação majoritariamente via WhatsApp entre as equipes.</p>
+      <p class="section-lede">Hoje, o hospital conta com uma operação eficiente, com múltiplos profissionais e sistemas envolvidos e comunicação majoritariamente via WhatsApp entre as equipes — porém com lacunas sutis no processo.</p>
 
       <div class="limitations-row">
-        <span class="limitations-label">Sistemas testados anteriormente eram limitados em</span>
+        <span class="limitations-label">Sistemas testados anteriormente eram limitados, não entregando:</span>
         <div class="limitations-chips">
           <span class="limitation-chip">Monitoramento do tempo de limpeza</span>
-          <span class="limitation-chip">Visibilidade sobre os tipos de limpeza</span>
+          <span class="limitation-chip">Visibilidade sobre os diferentes tipos de limpeza</span>
+          <span class="limitation-chip">Calendário e centralização administrativa das atividades</span>
           <span class="limitation-chip">Visibilidade sobre insumos disponíveis nos DMLs</span>
         </div>
       </div>
 
       <div class="critical-block">
         <span class="critical-label">Pontos críticos para a Opy</span>
-        <div class="critical-grid">
+        <div class="critical-grid critical-grid-2">
           <div class="critical-card">
             <h4 class="critical-title">Comunicação entre as partes</h4>
             <p class="critical-text">Enfermagem, revisores e agentes de limpeza se comunicam hoje por WhatsApp. O sistema centraliza esse fluxo entre a operação e o apoio.</p>
           </div>
           <div class="critical-card">
             <h4 class="critical-title">Visibilidade e controle de insumos</h4>
-            <p class="critical-text">Regras de estoque mínimo por DML, com alertas automáticos de reabastecimento — sem depender de contagem manual.</p>
+            <p class="critical-text">Regras de estoque mínimo por DML, com alertas automáticos de reabastecimento e planejamento mais preciso, com base nas necessidades reais de cada área.</p>
           </div>
           <div class="critical-card">
             <h4 class="critical-title">Escalas automatizadas</h4>
             <p class="critical-text">Um calendário único com todas as limpezas, tipos e responsáveis, para montar e ajustar escalas por pessoa e por perímetro.</p>
+          </div>
+          <div class="critical-card">
+            <h4 class="critical-title">Gestão centralizada</h4>
+            <p class="critical-text">Uma camada de gestão com métricas de acompanhamento e permissionamentos por função, customizada para cada perfil de colaborador.</p>
           </div>
         </div>
       </div>
