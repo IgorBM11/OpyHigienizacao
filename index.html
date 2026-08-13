@@ -142,12 +142,36 @@ h1, h2, h3, h4 {
 .section {
   position: sticky;
   top: 0;
-  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: safe center;
   background: var(--white);
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-soft) transparent;
+}
+
+/* Sections taller than the viewport scroll internally (via overflow-y above)
+   instead of relying on the sticky element to grow past 100vh — a sticky box
+   that grows taller than the viewport gets visually "stuck" at top:0 with its
+   overflow permanently hidden below the fold, since sticky does not provide
+   its own scroll mechanism. Capping height at 100vh + overflow-y:auto keeps
+   every section's full content reachable regardless of viewport size. */
+
+.section::-webkit-scrollbar { width: 6px; }
+.section::-webkit-scrollbar-track { background: transparent; }
+.section::-webkit-scrollbar-thumb {
+  background: var(--border-soft);
+  border-radius: 3px;
+}
+.section-dark::-webkit-scrollbar-thumb,
+.section-closing::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
 }
 
 /* Each subsequent section slides over the previous one as you scroll */
@@ -384,17 +408,17 @@ h1, h2, h3, h4 {
   white-space: nowrap;
 }
 
-/* Flow */
+/* Critical information block */
 
-.flow-block {
-  margin-top: 30px;
+.critical-block {
+  margin-top: 18px;
   padding: 22px 24px;
   background: var(--white);
   border: 1px solid var(--border-soft);
   border-radius: 12px;
 }
 
-.flow-label {
+.critical-label {
   display: block;
   font-size: 11px;
   font-weight: 600;
@@ -404,60 +428,28 @@ h1, h2, h3, h4 {
   margin-bottom: 16px;
 }
 
-.flow {
-  display: flex;
-  align-items: center;
+.critical-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
 }
 
-.flow-step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  text-align: center;
-  width: 128px;
-  flex-shrink: 0;
+.critical-card {
+  padding-left: 14px;
+  border-left: 2px solid var(--accent-color);
 }
 
-.flow-dot {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: var(--accent-soft);
-  color: #2f8a73;
-  font-family: var(--font-title);
-  font-weight: 700;
-  font-size: 13px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.flow-step-final .flow-dot {
-  background: var(--accent-color);
-  color: var(--white);
-}
-
-.flow-text {
-  font-size: 12.5px;
-  font-weight: 500;
+.critical-title {
+  font-size: 13.5px;
+  font-weight: 600;
   color: var(--text-dark);
-  line-height: 1.3;
+  margin-bottom: 6px;
 }
 
-.flow-line {
-  flex: 1;
-  height: 1.5px;
-  background: repeating-linear-gradient(to right, var(--border-soft) 0 6px, transparent 6px 11px);
-  margin: 0 -6px 22px;
-}
-
-.flow-note {
-  display: block;
-  margin-top: 14px;
-  font-size: 12px;
+.critical-text {
+  font-size: 12.5px;
   color: var(--text-light);
-  font-style: italic;
+  line-height: 1.5;
 }
 
 /* Pillars */
@@ -869,7 +861,7 @@ h1, h2, h3, h4 {
       <p class="section-lede">Uma operação majoritariamente manual, com múltiplos profissionais e sistemas envolvidos e comunicação via WhatsApp. Os sistemas já testados têm funcionalidades limitadas para o que o hospital precisa hoje.</p>
 
       <div class="limitations-row">
-        <span class="limitations-label">Sistemas testados anteriormente, limitados em</span>
+        <span class="limitations-label">Sistemas testados anteriormente eram limitados em</span>
         <div class="limitations-chips">
           <span class="limitation-chip">Monitoramento do tempo de limpeza</span>
           <span class="limitation-chip">Visibilidade sobre os tipos de limpeza</span>
@@ -877,35 +869,22 @@ h1, h2, h3, h4 {
         </div>
       </div>
 
-      <div class="flow-block">
-        <span class="flow-label">Fluxo que o sistema precisa orquestrar</span>
-        <div class="flow">
-          <div class="flow-step">
-            <span class="flow-dot">1</span>
-            <span class="flow-text">Alta hospitalar</span>
+      <div class="critical-block">
+        <span class="critical-label">Informações críticas para a operação da Opy</span>
+        <div class="critical-grid">
+          <div class="critical-card">
+            <h4 class="critical-title">Comunicação entre as partes</h4>
+            <p class="critical-text">Enfermagem, revisores e agentes de limpeza se comunicam hoje por WhatsApp. O sistema centraliza esse fluxo entre a operação e o apoio.</p>
           </div>
-          <div class="flow-line"></div>
-          <div class="flow-step">
-            <span class="flow-dot">2</span>
-            <span class="flow-text">Pronto para limpeza</span>
+          <div class="critical-card">
+            <h4 class="critical-title">Visibilidade e controle de insumos</h4>
+            <p class="critical-text">Regras de estoque mínimo por DML, com alertas automáticos de reabastecimento — sem depender de contagem manual.</p>
           </div>
-          <div class="flow-line"></div>
-          <div class="flow-step">
-            <span class="flow-dot">3</span>
-            <span class="flow-text">Em limpeza</span>
-          </div>
-          <div class="flow-line"></div>
-          <div class="flow-step">
-            <span class="flow-dot">4</span>
-            <span class="flow-text">Aguardando revisão</span>
-          </div>
-          <div class="flow-line"></div>
-          <div class="flow-step flow-step-final">
-            <span class="flow-dot">5</span>
-            <span class="flow-text">Liberado ao NIR</span>
+          <div class="critical-card">
+            <h4 class="critical-title">Escalas automatizadas</h4>
+            <p class="critical-text">Um calendário único com todas as limpezas, tipos e responsáveis, para montar e ajustar escalas por pessoa e por perímetro.</p>
           </div>
         </div>
-        <span class="flow-note">Se a revisão reprova a limpeza, o leito retorna à etapa 3.</span>
       </div>
 
       <div class="pillars">
