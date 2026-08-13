@@ -454,11 +454,21 @@ h1, h2, h3, h4 {
 
 /* Pillars */
 
+.pillars-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-top: 26px;
+  margin-bottom: 14px;
+}
+
 .pillars {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  margin-top: 28px;
 }
 
 .pillar-card {
@@ -858,7 +868,7 @@ h1, h2, h3, h4 {
     <div class="section-inner">
       <span class="section-kicker">01 — Contexto</span>
       <h2 class="section-title">O ponto de partida do projeto</h2>
-      <p class="section-lede">Uma operação majoritariamente manual, com múltiplos profissionais e sistemas envolvidos e comunicação via WhatsApp. Os sistemas já testados têm funcionalidades limitadas para o que o hospital precisa hoje.</p>
+      <p class="section-lede">Hoje o hospital conta com uma operação consolidada, com múltiplos profissionais e sistemas envolvidos, e comunicação majoritariamente via WhatsApp entre as equipes.</p>
 
       <div class="limitations-row">
         <span class="limitations-label">Sistemas testados anteriormente eram limitados em</span>
@@ -870,7 +880,7 @@ h1, h2, h3, h4 {
       </div>
 
       <div class="critical-block">
-        <span class="critical-label">Informações críticas para a operação da Opy</span>
+        <span class="critical-label">Pontos críticos para a Opy</span>
         <div class="critical-grid">
           <div class="critical-card">
             <h4 class="critical-title">Comunicação entre as partes</h4>
@@ -887,6 +897,7 @@ h1, h2, h3, h4 {
         </div>
       </div>
 
+      <span class="pillars-label">O que o sistema vai entregar</span>
       <div class="pillars">
         <div class="pillar-card card">
           <span class="pillar-index">01</span>
