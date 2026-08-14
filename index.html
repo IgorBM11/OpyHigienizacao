@@ -137,49 +137,17 @@ h1, h2, h3, h4 {
 
 .nav-link.active::after { transform: scaleX(1); }
 
-/* ---------- Section shell (stacking / conveyor effect) ---------- */
+/* ---------- Section shell (static document flow — no stacking/overlap) ---------- */
 
 .section {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  max-height: 100vh;
+  position: relative;
+  min-height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: safe center;
+  justify-content: center;
   background: var(--white);
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-  scrollbar-color: var(--border-soft) transparent;
 }
-
-/* Sections taller than the viewport scroll internally (via overflow-y above)
-   instead of relying on the sticky element to grow past 100vh — a sticky box
-   that grows taller than the viewport gets visually "stuck" at top:0 with its
-   overflow permanently hidden below the fold, since sticky does not provide
-   its own scroll mechanism. Capping height at 100vh + overflow-y:auto keeps
-   every section's full content reachable regardless of viewport size. */
-
-.section::-webkit-scrollbar { width: 6px; }
-.section::-webkit-scrollbar-track { background: transparent; }
-.section::-webkit-scrollbar-thumb {
-  background: var(--border-soft);
-  border-radius: 3px;
-}
-.section-dark::-webkit-scrollbar-thumb,
-.section-closing::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.18);
-}
-
-/* Each subsequent section slides over the previous one as you scroll */
-#inicio      { z-index: 1; }
-#contexto    { z-index: 2; }
-#cronograma  { z-index: 3; }
-#status      { z-index: 4; }
-#obrigado    { z-index: 5; }
 
 .section-inner {
   max-width: 1280px;
@@ -373,131 +341,97 @@ h1, h2, h3, h4 {
 
 /* ---------- Section 01: Contexto do Projeto ---------- */
 
-.limitations-row {
-  margin-top: 32px;
-  padding: 18px 22px;
-  background: var(--white);
-  border: 1px solid var(--border-soft);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.limitations-label {
-  font-size: 12.5px;
-  font-weight: 600;
-  color: var(--text-light);
-  flex-shrink: 0;
-}
-
-.limitations-chips {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.limitation-chip {
-  font-size: 12.5px;
-  font-weight: 500;
-  color: var(--primary-color);
-  background: var(--accent-soft);
-  padding: 6px 12px;
-  border-radius: 999px;
-  white-space: nowrap;
-}
-
-/* Critical information block */
-
-.critical-block {
-  margin-top: 18px;
-  padding: 22px 24px;
+.solution-block {
+  margin-top: 28px;
+  padding: 28px 30px;
   background: var(--white);
   border: 1px solid var(--border-soft);
   border-radius: 12px;
 }
 
-.critical-label {
+.solution-label {
   display: block;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--text-light);
-  margin-bottom: 16px;
+  color: var(--accent-color);
+  margin-bottom: 14px;
 }
 
-.critical-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-
-.critical-grid-2 {
-  grid-template-columns: repeat(2, 1fr);
-  row-gap: 18px;
-}
-
-.critical-card {
-  padding-left: 14px;
-  border-left: 2px solid var(--accent-color);
-}
-
-.critical-title {
-  font-size: 13.5px;
-  font-weight: 600;
+.solution-text {
+  font-size: 15px;
   color: var(--text-dark);
-  margin-bottom: 6px;
+  line-height: 1.65;
+  max-width: 760px;
 }
 
-.critical-text {
-  font-size: 12.5px;
+.solution-text strong { color: var(--primary-color); font-weight: 600; }
+
+.solution-points {
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-soft);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px 24px;
+}
+
+.solution-point {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 13.5px;
   color: var(--text-light);
   line-height: 1.5;
 }
 
-/* Pillars */
-
-.pillars-label {
-  display: block;
-  font-size: 11px;
+.solution-point strong {
+  color: var(--text-dark);
   font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-light);
-  margin-top: 26px;
-  margin-bottom: 14px;
 }
 
-.pillars {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-
-.pillar-card {
-  padding: 20px 20px 22px;
-}
-
-.pillar-index {
-  font-family: var(--font-title);
-  font-size: 12px;
-  font-weight: 700;
+.solution-point-mark {
+  flex-shrink: 0;
   color: var(--accent-color);
-  letter-spacing: 0.04em;
+  font-weight: 700;
 }
 
-.pillar-title {
-  font-size: 16px;
-  margin-top: 10px;
-  margin-bottom: 8px;
+.solution-formats {
+  margin-top: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-.pillar-text {
-  font-size: 13px;
-  color: var(--text-light);
-  line-height: 1.55;
+.solution-format-chip {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--primary-color);
+  background: var(--accent-soft);
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+/* Section 01 now renders on the dark (primary-color) background — adapt the
+   solution block from light-card styling to translucent-on-blue styling. */
+
+.section-dark .solution-block {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.section-dark .solution-text { color: rgba(255, 255, 255, 0.92); }
+.section-dark .solution-text strong { color: var(--white); }
+
+.section-dark .solution-points { border-top-color: rgba(255, 255, 255, 0.16); }
+.section-dark .solution-point { color: rgba(255, 255, 255, 0.8); }
+.section-dark .solution-point strong { color: var(--white); }
+
+.section-dark .solution-format-chip {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.14);
 }
 
 .chip-next {
@@ -627,125 +561,88 @@ h1, h2, h3, h4 {
 @media (max-width: 860px) {
   .nav-links { display: none; }
   .hero-meta { flex-wrap: wrap; row-gap: 16px; }
-  .context-grid { grid-template-columns: repeat(2, 1fr); }
-  .pillars { grid-template-columns: 1fr; }
-  .flow { flex-wrap: wrap; }
+  .solution-points { grid-template-columns: 1fr; }
   .timeline-content { flex-direction: column; align-items: flex-start; gap: 4px; }
-  .status-grid { grid-template-columns: 1fr; }
+  .journeys-table { font-size: 12px; }
+  .journeys-table th, .journeys-table td { padding: 10px 12px; }
 }
 
-/* ---------- Section 03: Onde Estamos e Onde Chegaremos ---------- */
+/* Journeys progress table (Section 02: Cronograma) — rendered as a
+   blue card, matching Section 01's solution-block treatment. */
 
-.status-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-  margin-top: 36px;
-}
-
-.status-card {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+.journeys-block {
+  margin-top: 40px;
+  padding: 28px 30px 30px;
+  background: var(--primary-color);
   border-radius: 12px;
-  padding: 22px 24px 24px;
 }
 
-.status-card-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 16px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-}
-
-.status-card-title {
-  font-size: 16px;
-  color: var(--white);
-}
-
-.chip-status-now {
-  background: var(--accent-color);
-  color: var(--white);
-}
-
-.chip-status-future {
-  background: rgba(255, 255, 255, 0.12);
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.status-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 13.5px;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.88);
-  padding: 7px 0;
-}
-
-.status-list li em { color: rgba(255, 255, 255, 0.6); font-style: normal; }
-
-.status-mark {
-  flex-shrink: 0;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--accent-color);
-  color: var(--primary-color);
-  font-size: 10px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1px;
-}
-
-.status-mark-future {
-  background: rgba(255, 255, 255, 0.14);
-  color: var(--white);
-  font-family: var(--font-title);
-}
-
-.status-list li.is-outcome {
-  margin-top: 8px;
-  padding: 12px 14px;
-  border: 1.5px solid var(--accent-color);
-  border-radius: 10px;
-  font-weight: 600;
-  color: var(--white);
-}
-
-.status-mark-outcome {
-  background: var(--accent-color);
-  color: var(--primary-color);
-}
-
-.status-highlight {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-top: 22px;
-  padding: 16px 22px;
-  background: var(--accent-color);
-  border-radius: 12px;
-  flex-wrap: wrap;
-}
-
-.status-highlight-label {
+.journeys-label {
+  display: block;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(44, 62, 80, 0.65);
+  color: var(--accent-color);
+  margin-bottom: 16px;
 }
 
-.status-highlight-value {
-  font-family: var(--font-title);
-  font-size: 15px;
+.journeys-table-wrap {
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+}
+
+.journeys-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.journeys-table th {
+  text-align: left;
+  padding: 13px 18px;
+  font-size: 11px;
   font-weight: 600;
-  color: var(--primary-color);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  white-space: nowrap;
+}
+
+.journeys-table td {
+  padding: 13px 18px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.92);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  white-space: nowrap;
+}
+
+.journeys-table tbody tr:last-child td { border-bottom: none; }
+
+.status-check-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(92, 182, 159, 0.22);
+  color: var(--accent-color);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.journeys-table .chip-progress {
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--white);
+}
+
+.journeys-table .chip-upcoming {
+  background: rgba(255, 255, 255, 0.10);
+  color: rgba(255, 255, 255, 0.75);
 }
 
 /* ---------- Closing: Obrigado ---------- */
@@ -845,7 +742,6 @@ h1, h2, h3, h4 {
       <li><a href="#inicio" class="nav-link" data-section="inicio">Início</a></li>
       <li><a href="#contexto" class="nav-link" data-section="contexto">Contexto do Projeto</a></li>
       <li><a href="#cronograma" class="nav-link" data-section="cronograma">Cronograma</a></li>
-      <li><a href="#status" class="nav-link" data-section="status">Onde Estamos e Onde Chegaremos</a></li>
       <li><a href="#obrigado" class="nav-link" data-section="obrigado">Contato</a></li>
     </ul>
   </div>
@@ -869,60 +765,24 @@ h1, h2, h3, h4 {
     </a>
   </section>
 
-  <section id="contexto" class="section section-tint">
+  <section id="contexto" class="section section-dark">
     <div class="section-inner">
       <span class="section-kicker">01 — Contexto</span>
       <h2 class="section-title">O ponto de partida do projeto</h2>
       <p class="section-lede">Hoje, o hospital conta com uma operação eficiente, com múltiplos profissionais e sistemas envolvidos — porém com lacunas e oportunidades de melhoria no processo.</p>
 
-      <div class="limitations-row">
-        <span class="limitations-label">Outros sistemas já foram testados anteriormente, mas eram limitados, não entregando:</span>
-        <div class="limitations-chips">
-          <span class="limitation-chip">Monitoramento do tempo de limpeza</span>
-          <span class="limitation-chip">Visibilidade sobre os diferentes tipos de limpeza</span>
-          <span class="limitation-chip">Calendário e centralização administrativa das atividades</span>
-          <span class="limitation-chip">Visibilidade sobre insumos disponíveis nos DMLs</span>
+      <div class="solution-block">
+        <span class="solution-label">O que está sendo construído</span>
+        <p class="solution-text">Uma plataforma de gestão de higienização hospitalar, entregue em <strong>versão Web e Aplicativo</strong>: o app de campo registra cada limpeza via QR Code, enquanto o painel web centraliza o controle de escalas, insumos e indicadores — resolvendo diretamente os pontos críticos da operação hoje.</p>
+        <div class="solution-points">
+          <span class="solution-point"><span class="solution-point-mark">&#10003;</span><span><strong>Comunicação centralizada</strong> entre enfermagem, revisores e agentes de limpeza, substituindo o fluxo por WhatsApp.</span></span>
+          <span class="solution-point"><span class="solution-point-mark">&#10003;</span><span><strong>Controle de insumos</strong> por DML, com estoque mínimo e alertas automáticos de reabastecimento.</span></span>
+          <span class="solution-point"><span class="solution-point-mark">&#10003;</span><span><strong>Escalas automatizadas</strong>, com calendário único de limpezas, tipos e responsáveis por perímetro.</span></span>
+          <span class="solution-point"><span class="solution-point-mark">&#10003;</span><span><strong>Gestão e indicadores</strong> em tempo real, com permissionamento customizado por função.</span></span>
         </div>
-      </div>
-
-      <div class="critical-block">
-        <span class="critical-label">Pontos críticos para a Opy</span>
-        <div class="critical-grid critical-grid-2">
-          <div class="critical-card">
-            <h4 class="critical-title">Comunicação entre as partes</h4>
-            <p class="critical-text">Enfermagem, revisores e agentes de limpeza se comunicam hoje por WhatsApp. O sistema centraliza esse fluxo entre a operação e o apoio.</p>
-          </div>
-          <div class="critical-card">
-            <h4 class="critical-title">Visibilidade e controle de insumos</h4>
-            <p class="critical-text">Regras de estoque mínimo por DML, com alertas automáticos de reabastecimento e planejamento mais preciso, com base nas necessidades reais de cada área.</p>
-          </div>
-          <div class="critical-card">
-            <h4 class="critical-title">Escalas automatizadas</h4>
-            <p class="critical-text">Um calendário único com todas as limpezas, tipos e responsáveis, para montar e ajustar escalas por pessoa e por perímetro.</p>
-          </div>
-          <div class="critical-card">
-            <h4 class="critical-title">Gestão centralizada</h4>
-            <p class="critical-text">Uma camada de gestão com métricas de acompanhamento e permissionamentos por função, customizada para cada perfil de colaborador.</p>
-          </div>
-        </div>
-      </div>
-
-      <span class="pillars-label">O que o sistema vai entregar</span>
-      <div class="pillars">
-        <div class="pillar-card card">
-          <span class="pillar-index">01</span>
-          <h3 class="pillar-title">App de Campo</h3>
-          <p class="pillar-text">Agentes de limpeza, banheiristas e revisores registram início, fim e aprovação de cada limpeza via QR Code.</p>
-        </div>
-        <div class="pillar-card card">
-          <span class="pillar-index">02</span>
-          <h3 class="pillar-title">Painel de Gestão</h3>
-          <p class="pillar-text">Indicadores de limpezas planejadas vs. realizadas, por leito, área e turno, em tempo real.</p>
-        </div>
-        <div class="pillar-card card">
-          <span class="pillar-index">03</span>
-          <h3 class="pillar-title">Rastreabilidade de Estoque</h3>
-          <p class="pillar-text">Controle de entrada e uso de insumos por DML, vinculado a cada atividade de limpeza.</p>
+        <div class="solution-formats">
+          <span class="solution-format-chip">Web</span>
+          <span class="solution-format-chip">Aplicativo</span>
         </div>
       </div>
     </div>
@@ -1036,45 +896,53 @@ h1, h2, h3, h4 {
         </div>
 
       </div>
-    </div>
-  </section>
 
-  <section id="status" class="section section-dark">
-    <div class="section-inner">
-      <span class="section-kicker">03 — Onde Estamos e Onde Chegaremos</span>
-      <h2 class="section-title">Fase 2 em andamento: desenvolvimento rumo ao piloto em Manaus</h2>
-      <p class="section-lede">Jornadas mapeadas e validadas, infraestrutura alinhada, app em análise na loja — o projeto segue no ritmo previsto até o go-live.</p>
-
-      <div class="status-grid">
-        <div class="status-card">
-          <div class="status-card-top">
-            <h3 class="status-card-title">Onde estamos</h3>
-            <span class="chip chip-status-now">Agosto de 2026</span>
-          </div>
-          <ul class="status-list">
-            <li><span class="status-mark">&#10003;</span>Fase 1 concluída — jornadas operacionais mapeadas e validadas</li>
-            <li><span class="status-mark">&#10003;</span>Fase 2 em andamento — telas e funcionalidades sendo desenhadas</li>
-            <li><span class="status-mark">&#10003;</span>Alinhamento de infraestrutura e disponibilidade — contratação da W8 e envio do app à Google Play Store</li>
-            <li><span class="status-mark">&#10003;</span>1ª Visita Presencial em Manaus (17–21 de agosto), para mapear as jornadas operacionais in loco</li>
-          </ul>
+      <div class="journeys-block">
+        <span class="journeys-label">Progresso por jornada</span>
+        <div class="journeys-table-wrap">
+          <table class="journeys-table">
+            <thead>
+              <tr>
+                <th>Jornadas</th>
+                <th>Mapear jornada</th>
+                <th>Validar telas e funcionalidades</th>
+                <th>Desenvolver</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Agente de limpeza</td>
+                <td><span class="status-check-icon">&#10003;</span></td>
+                <td><span class="chip chip-progress">Em andamento</span></td>
+                <td><span class="chip chip-upcoming">Próximo passo</span></td>
+              </tr>
+              <tr>
+                <td>Agente banheirista</td>
+                <td><span class="status-check-icon">&#10003;</span></td>
+                <td><span class="chip chip-progress">Em andamento</span></td>
+                <td><span class="chip chip-upcoming">Próximo passo</span></td>
+              </tr>
+              <tr>
+                <td>Apoio</td>
+                <td><span class="status-check-icon">&#10003;</span></td>
+                <td><span class="chip chip-progress">Em andamento</span></td>
+                <td><span class="chip chip-upcoming">Próximo passo</span></td>
+              </tr>
+              <tr>
+                <td>Revisor</td>
+                <td><span class="status-check-icon">&#10003;</span></td>
+                <td><span class="chip chip-progress">Em andamento</span></td>
+                <td><span class="chip chip-upcoming">Próximo passo</span></td>
+              </tr>
+              <tr>
+                <td>Líder</td>
+                <td><span class="status-check-icon">&#10003;</span></td>
+                <td><span class="chip chip-progress">Em andamento</span></td>
+                <td><span class="chip chip-upcoming">Próximo passo</span></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="status-card">
-          <div class="status-card-top">
-            <h3 class="status-card-title">Onde chegaremos</h3>
-            <span class="chip chip-status-future">Até janeiro de 2027</span>
-          </div>
-          <ul class="status-list">
-            <li><span class="status-mark status-mark-future">3</span>Fase 3 — desenvolvimento completo do web e do app <em>(set–nov)</em></li>
-            <li><span class="status-mark status-mark-future">4</span>Fase 4 — preparação e piloto operacional em Manaus <em>(nov–dez)</em></li>
-            <li><span class="status-mark status-mark-future">5</span>Fase 5 — rollout e go-live em todo o hospital <em>(dez–jan)</em></li>
-            <li class="is-outcome"><span class="status-mark status-mark-outcome">&#9733;</span>Sistema de higienização 100% em operação, substituindo o processo manual</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="status-highlight">
-        <span class="status-highlight-label">Próxima etapa</span>
-        <span class="status-highlight-value">2ª Visita Presencial — 12 a 16 de outubro de 2026</span>
       </div>
     </div>
   </section>
@@ -1117,24 +985,13 @@ h1, h2, h3, h4 {
     });
   }
 
-  // Custom scroll-to computed from section heights rather than the native
-  // anchor-jump / scrollIntoView (or even offsetTop), which for a
-  // position: sticky element reflect its CURRENT stuck/visual position, not
-  // its true place in the document. Because sections stack via sticky to
-  // create the "conveyor" effect, a covered section still reports
-  // rect.top === 0 (and offsetTop equal to the current scroll position)
-  // while stuck, which fools those APIs into thinking it's already in view
-  // and backward navigation silently fails. Summing offsetHeight (a pure
-  // size, unaffected by sticky positioning) of preceding sections gives a
-  // reliable target.
+  // Sections use normal static document flow (no position: sticky), so the
+  // native rect-based position is always accurate — a simple offset from
+  // the current scroll position is enough to reach any section reliably.
   function scrollToId(id) {
     var target = document.getElementById(id);
     if (!target) return;
-    var top = 0;
-    for (var i = 0; i < sections.length; i++) {
-      if (sections[i] === target) break;
-      top += sections[i].offsetHeight;
-    }
+    var top = target.getBoundingClientRect().top + window.pageYOffset;
     window.scrollTo({ top: top, left: 0, behavior: 'smooth' });
   }
 
