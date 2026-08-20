@@ -563,8 +563,9 @@ h1, h2, h3, h4 {
   .hero-meta { flex-wrap: wrap; row-gap: 16px; }
   .solution-points { grid-template-columns: 1fr; }
   .timeline-content { flex-direction: column; align-items: flex-start; gap: 4px; }
-  .journeys-table { font-size: 12px; }
-  .journeys-table th, .journeys-table td { padding: 10px 12px; }
+  .demo-step { flex-wrap: wrap; }
+  .demo-step-text { flex-basis: 100%; order: 1; margin-left: 38px; }
+  .role-chip { order: 2; }
 }
 
 /* Journeys progress table (Section 02: Cronograma) — rendered as a
@@ -587,40 +588,32 @@ h1, h2, h3, h4 {
   margin-bottom: 16px;
 }
 
-.journeys-table-wrap {
-  overflow-x: auto;
+.journeys-intro {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 620px;
+  line-height: 1.6;
+}
+
+.journeys-grid {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.journey-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px 10px 10px;
+  background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 10px;
-}
-
-.journeys-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.journeys-table th {
-  text-align: left;
-  padding: 13px 18px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.65);
-  background: rgba(255, 255, 255, 0.06);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
-  white-space: nowrap;
-}
-
-.journeys-table td {
-  padding: 13px 18px;
+  border-radius: 999px;
   font-size: 13.5px;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.92);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  white-space: nowrap;
 }
-
-.journeys-table tbody tr:last-child td { border-bottom: none; }
 
 .status-check-icon {
   display: inline-flex;
@@ -633,17 +626,124 @@ h1, h2, h3, h4 {
   color: var(--accent-color);
   font-size: 11px;
   font-weight: 700;
+  flex-shrink: 0;
 }
 
-.journeys-table .chip-progress {
-  background: rgba(255, 255, 255, 0.14);
-  color: var(--white);
+/* ---------- Section 03: Script das Demonstrações ---------- */
+
+.demo-block {
+  margin-top: 28px;
+  padding: 28px 30px;
+  background: var(--white);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
 }
 
-.journeys-table .chip-upcoming {
-  background: rgba(255, 255, 255, 0.10);
-  color: rgba(255, 255, 255, 0.75);
+.demo-block + .demo-block { margin-top: 20px; }
+
+.demo-block-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  margin-bottom: 8px;
 }
+
+.demo-block-title {
+  font-size: 19px;
+  margin-bottom: 4px;
+}
+
+.demo-steps-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-soft);
+}
+
+.demo-steps-header-spacer { width: 24px; flex-shrink: 0; }
+
+.demo-steps-header-label {
+  flex: 1;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
+
+.demo-steps-header-label-role {
+  flex: 0 0 74px;
+  text-align: center;
+}
+
+.demo-steps {
+  margin-top: 4px;
+  counter-reset: none;
+}
+
+.demo-step {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.demo-step:last-child { border-bottom: none; }
+
+.demo-step-number {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--primary-soft);
+  color: var(--primary-color);
+  font-family: var(--font-title);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.demo-step-text {
+  flex: 1;
+  font-size: 14px;
+  color: var(--text-dark);
+}
+
+.role-chip {
+  flex: 0 0 74px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--primary-color);
+  background: var(--accent-soft);
+  padding: 4px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.demo-disclaimer {
+  margin-top: 18px;
+  padding: 14px 16px;
+  background: var(--bg-light);
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  font-size: 12.5px;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+.demo-disclaimer strong { color: var(--text-dark); }
 
 /* ---------- Closing: Obrigado ---------- */
 
@@ -742,6 +842,7 @@ h1, h2, h3, h4 {
       <li><a href="#inicio" class="nav-link" data-section="inicio">Início</a></li>
       <li><a href="#contexto" class="nav-link" data-section="contexto">Contexto do Projeto</a></li>
       <li><a href="#cronograma" class="nav-link" data-section="cronograma">Cronograma</a></li>
+      <li><a href="#demonstracoes" class="nav-link" data-section="demonstracoes">Demonstrações</a></li>
       <li><a href="#obrigado" class="nav-link" data-section="obrigado">Contato</a></li>
     </ul>
   </div>
@@ -773,12 +874,13 @@ h1, h2, h3, h4 {
 
       <div class="solution-block">
         <span class="solution-label">O que está sendo construído</span>
-        <p class="solution-text">Uma plataforma de gestão de higienização hospitalar, entregue em <strong>versão Web e Aplicativo</strong>: o app de campo registra cada limpeza via QR Code, enquanto o painel web centraliza o controle de escalas, insumos e indicadores — resolvendo diretamente os pontos críticos da operação hoje.</p>
+        <p class="solution-text">Uma plataforma de gestão de higienização hospitalar, entregue em <strong>versão Web e Aplicativo</strong>: o app de campo registra cada limpeza em tempo real, enquanto o painel web centraliza o controle de escalas, insumos e indicadores — resolvendo diretamente os pontos críticos da operação hoje.</p>
         <div class="solution-points">
           <span class="solution-point"><span class="solution-point-mark">&#10003;</span><span><strong>Comunicação centralizada</strong> entre enfermagem, revisores e agentes de limpeza, substituindo o fluxo por WhatsApp.</span></span>
           <span class="solution-point"><span class="solution-point-mark">&#10003;</span><span><strong>Controle de insumos</strong> por DML, com estoque mínimo e alertas automáticos de reabastecimento.</span></span>
           <span class="solution-point"><span class="solution-point-mark">&#10003;</span><span><strong>Escalas automatizadas</strong>, com calendário único de limpezas, tipos e responsáveis por perímetro.</span></span>
           <span class="solution-point"><span class="solution-point-mark">&#10003;</span><span><strong>Gestão e indicadores</strong> em tempo real, com permissionamento customizado por função.</span></span>
+          <span class="solution-point"><span class="solution-point-mark">&#10003;</span><span><strong>Zero uso de papel</strong>, com checklists e registros de limpeza 100% digitais, do início ao fim do processo.</span></span>
         </div>
         <div class="solution-formats">
           <span class="solution-format-chip">Web</span>
@@ -899,50 +1001,70 @@ h1, h2, h3, h4 {
 
       <div class="journeys-block">
         <span class="journeys-label">Progresso por jornada</span>
-        <div class="journeys-table-wrap">
-          <table class="journeys-table">
-            <thead>
-              <tr>
-                <th>Jornadas</th>
-                <th>Mapear jornada</th>
-                <th>Validar telas e funcionalidades</th>
-                <th>Desenvolver</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Agente de limpeza</td>
-                <td><span class="status-check-icon">&#10003;</span></td>
-                <td><span class="chip chip-progress">Em andamento</span></td>
-                <td><span class="chip chip-upcoming">Próximo passo</span></td>
-              </tr>
-              <tr>
-                <td>Agente banheirista</td>
-                <td><span class="status-check-icon">&#10003;</span></td>
-                <td><span class="chip chip-progress">Em andamento</span></td>
-                <td><span class="chip chip-upcoming">Próximo passo</span></td>
-              </tr>
-              <tr>
-                <td>Apoio</td>
-                <td><span class="status-check-icon">&#10003;</span></td>
-                <td><span class="chip chip-progress">Em andamento</span></td>
-                <td><span class="chip chip-upcoming">Próximo passo</span></td>
-              </tr>
-              <tr>
-                <td>Revisor</td>
-                <td><span class="status-check-icon">&#10003;</span></td>
-                <td><span class="chip chip-progress">Em andamento</span></td>
-                <td><span class="chip chip-upcoming">Próximo passo</span></td>
-              </tr>
-              <tr>
-                <td>Líder</td>
-                <td><span class="status-check-icon">&#10003;</span></td>
-                <td><span class="chip chip-progress">Em andamento</span></td>
-                <td><span class="chip chip-upcoming">Próximo passo</span></td>
-              </tr>
-            </tbody>
-          </table>
+        <p class="journeys-intro">Todas as jornadas envolvidas na operação de higienização foram mapeadas.</p>
+        <div class="journeys-grid">
+          <span class="journey-chip"><span class="status-check-icon">&#10003;</span>Agente de limpeza</span>
+          <span class="journey-chip"><span class="status-check-icon">&#10003;</span>Agente banheirista</span>
+          <span class="journey-chip"><span class="status-check-icon">&#10003;</span>Apoio</span>
+          <span class="journey-chip"><span class="status-check-icon">&#10003;</span>Revisor</span>
+          <span class="journey-chip"><span class="status-check-icon">&#10003;</span>Líder</span>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="demonstracoes" class="section section-light">
+    <div class="section-inner">
+      <span class="section-kicker">03 — Roteiro das Demonstrações</span>
+      <h2 class="section-title">Script das demonstrações</h2>
+      <p class="section-lede">Fluxos previstos para as demonstrações da fase de mapeamento de telas e funcionalidades.</p>
+
+      <div class="demo-block">
+        <span class="demo-block-label">Demonstração 1</span>
+        <h3 class="demo-block-title">Sistema de Higienização</h3>
+        <div class="demo-steps-header">
+          <span class="demo-steps-header-spacer"></span>
+          <span class="demo-steps-header-label">Processo</span>
+          <span class="demo-steps-header-label demo-steps-header-label-role">Perspectiva</span>
+        </div>
+        <ol class="demo-steps">
+          <li class="demo-step">
+            <span class="demo-step-number">1</span>
+            <span class="demo-step-text">Alocação de agentes de limpeza</span>
+            <span class="role-chip">Líder</span>
+          </li>
+          <li class="demo-step">
+            <span class="demo-step-number">2</span>
+            <span class="demo-step-text">Abastecimento de DMLs</span>
+            <span class="role-chip">Apoio</span>
+          </li>
+          <li class="demo-step">
+            <span class="demo-step-number">3</span>
+            <span class="demo-step-text">Visualização de agenda e retirada de insumos</span>
+            <span class="role-chip">Agente</span>
+          </li>
+          <li class="demo-step">
+            <span class="demo-step-number">4</span>
+            <span class="demo-step-text">Solicitação de insumos</span>
+            <span class="role-chip">Agente</span>
+          </li>
+          <li class="demo-step">
+            <span class="demo-step-number">5</span>
+            <span class="demo-step-text">Início e fim da limpeza</span>
+            <span class="role-chip">Agente</span>
+          </li>
+          <li class="demo-step">
+            <span class="demo-step-number">6</span>
+            <span class="demo-step-text">Processo de revisão de limpeza</span>
+            <span class="role-chip">Revisor</span>
+          </li>
+        </ol>
+        <p class="demo-disclaimer"><strong>Observação:</strong> os processos aqui apresentados refletem o entendimento atual do fluxo operacional e não têm caráter exaustivo. Serão revisados e atualizados ao longo do projeto, à medida que o conhecimento sobre os processos for aprofundado em conjunto com a equipe responsável.</p>
+      </div>
+
+      <div class="demo-block">
+        <span class="demo-block-label">Demonstração 2</span>
+        <h3 class="demo-block-title">Dashboard de Indicadores (OZN e OMN)</h3>
       </div>
     </div>
   </section>
